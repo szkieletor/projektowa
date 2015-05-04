@@ -1,42 +1,65 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/*
+A Bootstrap 3.1 affix sidebar template
+from http://bootply.com
+
+This CSS code should follow the 'bootstrap.css'
+in your HTML file.
+
+license: MIT
+author: bootply.com
+*/
+
+body {
+ padding-top:50px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+#masthead { 
+ min-height:250px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+#masthead h1 {
+ font-size: 30px;
+ line-height: 1;
+ padding-top:20px;
 }
 
-/* styles for validation helpers */
-.field-validation-error {
-    color: #b94a48;
+#masthead .well {
+ margin-top:8%;
 }
 
-.field-validation-valid {
-    display: none;
+@media screen and (min-width: 768px) {
+  #masthead h1 {
+    font-size: 50px;
+  }
 }
 
-input.input-validation-error {
-    border: 1px solid #b94a48;
+.navbar-bright {
+ background-color:#111155;
+ color:#fff;
 }
 
-input[type="checkbox"].input-validation-error {
-    border: 0 none;
+.affix-top,.affix{
+ position: static;
 }
 
-.validation-summary-errors {
-    color: #b94a48;
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+    position: static;
+  	margin-top:30px;
+  	width:228px;
+  }
+  
+  #sidebar.affix {
+    position: fixed;
+    top:70px;
+    width:228px;
+  }
 }
 
-.validation-summary-valid {
-    display: none;
+#sidebar li.active {
+  border:0 #eee solid;
+  border-right-width:5px;
+}
+.modal-footer {   
+    border-top: 0px; 
 }
