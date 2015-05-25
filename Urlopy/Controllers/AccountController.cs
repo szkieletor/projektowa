@@ -90,7 +90,7 @@ namespace Urlopy.Controllers
                     AddErrors(result);
                 }
             }
-
+            UserManager
             // If we got this far, something failed, redisplay form
             return View(model);
         }
