@@ -170,12 +170,25 @@
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\HolidayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VacationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505060810504_robaModele.cs" />
     <Compile Include="Migrations\201505060810504_robaModele.Designer.cs">
       <DependentUpon>201505060810504_robaModele.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505241755076_ŁowiczApproves.cs" />
+    <Compile Include="Migrations\201505241755076_ŁowiczApproves.Designer.cs">
+      <DependentUpon>201505241755076_ŁowiczApproves.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505251830574_ŁowiczApproves2.cs" />
+    <Compile Include="Migrations\201505251830574_ŁowiczApproves2.Designer.cs">
+      <DependentUpon>201505251830574_ŁowiczApproves2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505251851157_LowiczApproves3.cs" />
+    <Compile Include="Migrations\201505251851157_LowiczApproves3.Designer.cs">
+      <DependentUpon>201505251851157_LowiczApproves3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -243,7 +256,11 @@
     <Content Include="Views\Holiday\Edit.cshtml" />
     <Content Include="Views\Holiday\Index.cshtml" />
     <Content Include="Views\Holiday\Pdf.cshtml" />
-    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Vacation\Create.cshtml" />
+    <Content Include="Views\Vacation\Delete.cshtml" />
+    <Content Include="Views\Vacation\Details.cshtml" />
+    <Content Include="Views\Vacation\Edit.cshtml" />
+    <Content Include="Views\Vacation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -259,6 +276,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505060810504_robaModele.resx">
       <DependentUpon>201505060810504_robaModele.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505241755076_ŁowiczApproves.resx">
+      <DependentUpon>201505241755076_ŁowiczApproves.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505251830574_ŁowiczApproves2.resx">
+      <DependentUpon>201505251830574_ŁowiczApproves2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505251851157_LowiczApproves3.resx">
+      <DependentUpon>201505251851157_LowiczApproves3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
