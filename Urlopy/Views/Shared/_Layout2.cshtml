@@ -28,10 +28,10 @@
             <nav class="collapse navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#sec">Moje urlopy</a>
+                        <a href="#sec">Ustawienia konta</a>
                     </li>
                     <li>
-                        <a href="#sec">Ustawienia konta</a>
+                        @Html.ActionLink("Moje urlopy", "Index", "Vacation", routeValues: null, htmlAttributes: new { id = "registerLink" })
                     </li>
                     <li>
                         <a href="#sec">Kontakt</a>
