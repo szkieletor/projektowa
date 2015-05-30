@@ -304,6 +304,8 @@
     <Content Include="Views\Vacation\Details.cshtml" />
     <Content Include="Views\Vacation\Edit.cshtml" />
     <Content Include="Views\Vacation\Index.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Administration\ManageUserRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

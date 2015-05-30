@@ -90,7 +90,7 @@ namespace Urlopy.Controllers
                     AddErrors(result);
                 }
             }
-            
+
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -378,7 +378,8 @@ namespace Urlopy.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 
