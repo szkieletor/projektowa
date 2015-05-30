@@ -23,15 +23,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Home</a>
+                <a href="/Home/Index" class="navbar-brand">Home</a>
             </div>
             <nav class="collapse navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#sec">Ustawienia konta</a>
+                        @Html.ActionLink("Ustawienia Konta", "Manage", "Account")
                     </li>
                     <li>
-                        @Html.ActionLink("Moje urlopy", "Index", "Vacation", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        @Html.ActionLink("Moje urlopy", "Index", "Vacation")
                     </li>
                     <li>
                         <a href="#sec">Kontakt</a>
@@ -72,6 +72,7 @@
                 </ul>
             </div><!--/left-->
             <!--right-->
+           
             <div class="col-md-9">
                 @RenderBody()
                 <h2 id="start">Start</h2>

@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "ManageUserRoles";
+}
+
+
+
+
+<h2>Zarządzanie użytkownikami:</h2>
+<br />
+@using (Html.BeginForm("ManageUserRoles", "Administration", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+@Html.AntiForgeryToken()    
+<h4 id="nadawanie">Nadawanie praw:</h4>    
+<div class="form-group">    
+    <div class="col-lg-4">
+        <label>Użytkownik:</label>
+        
+        <select name="user" class="form-control">
+            @foreach (Urlopy.Models.ApplicationUser item in ViewBag.UsersList)
+            {
+                <option value="@item.Id">@item.UserName</option>
+            }
+        </select>
+        <br />
+        <label>Rola:</label>
+        <select name="role" class="form-control">
+            @foreach (Microsoft.AspNet.Identity.EntityFramework.IdentityRole item in ViewBag.RolesList)
+            {
+                <option value="@item.Name">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <br />
+            <input name="id" type="hidden" value="1" />
+            <input type="submit" class="btn btn-default" value="Nadaj prawa" />
+        </div>
+    </div>
+</div>
+}
+@using (Html.BeginForm("ManageUserRoles", "Administration", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <h4 id="odbieranie">Odbieranie praw:</h4>
+   <div class="form-group">
+       <div class="col-lg-4">
+           <label>Użytkownik:</label>
+           <select name="user2" class="form-control">
+               @foreach (Urlopy.Models.ApplicationUser item in ViewBag.UsersList)
+           {
+                   <option value="@item.Id">@item.UserName</option>
+           }
+           </select>
+           <br />
+           <label>Rola:</label>
+           <select name="role2" class="form-control">
+               @foreach (Microsoft.AspNet.Identity.EntityFramework.IdentityRole item in ViewBag.RolesList)
+           {
+                   <option value="@item.Name">@item.Name</option>
+           }
+           </select>
+           </div>
+           <div class="form-group">
+               <div class="col-md-offset-1 col-md-10">
+                   <br />
+                   <input name="id" type="hidden" value="2" />
+                   <input type="submit" class="btn btn-default" value="Odbierz prawa" />
+               </div>
+           </div>
+       </div>
+     
+}
+@using (Html.BeginForm("ManageUserRoles", "Administration", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <h4 id="sprawdzanie">Sprawdzanie praw:</h4>
+   <div class="form-group">
+       <div class="col-lg-4">
+           <label>Użytkownik:</label>
+           <select name="user3" class="form-control">
+               @foreach (Urlopy.Models.ApplicationUser item in ViewBag.UsersList)
+           {
+                   <option value="@item.Id">@item.UserName</option>
+           }
+           </select>
+           <br />
+        </div>
+    <div class="form-group">
+               <div class="col-md-offset-1 col-md-10">
+                   <br />
+                   <input name="id" type="hidden" value="3" />
+                   <input type="submit" class="btn btn-default" value="Sprawdz prawa" />
+               </div>
+           </div>
+    </div>
+}
+@if (ViewBag.RolesForThisUser != null)
+{
+    <div class="row">
+      <div class="col-md-6">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h3>Role tego użytkownika: </h3>
+              </div>
+              <div class="panel-body">
+                  <ol>
+                      @foreach (string item in ViewBag.RolesForThisUser)
+                  {
+                          <li>@item</li>
+                  }
+                  </ol>
+              </div>
+          </div>
+          </div>
+    </div>
+}<div class="col-md-3" id="leftCol">
+    <ul class="nav nav-stacked" id="sidebar">
+        <li><a href="#nadawanie">Nadawanie praw</a></li>
+        <li><a href="#odbieranie">Odbieranie praw</a></li>
+        <li><a href="#sprawdzanie">Sprawdzanie praw</a></li>
+    </ul>
+</div>
