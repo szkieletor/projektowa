@@ -40,6 +40,14 @@ namespace Urlopy.Controllers
                 string userRole = form["role"];
                 var account = new AccountController();
                 IdentityResult x = account.UserManager.AddToRole(userId, userRole);
+                if (x.Succeeded == true)
+                {
+                    TempData["msg"] = "<script>alert('Nadano prawa użytkownikowi!');</script>";
+                }
+                else
+                {
+                    TempData["msg"] = "<script>alert('Błąd: Użytkownik posiada już dane prawa/Nie udało się nadać praw');</script>";
+                }
             }
             if(form["id"] == "2")
             {
@@ -49,6 +57,14 @@ namespace Urlopy.Controllers
                 if (account.UserManager.IsInRole(userId, userRole))
                 { 
                 IdentityResult x = account.UserManager.RemoveFromRole(userId, userRole);
+                    if(x.Succeeded == true)
+                    {
+                        TempData["msg"] = "<script>alert('Odebrano prawa użytkownikowi!');</script>";
+                    }
+                    else
+                    {
+                        TempData["msg"] = "<script>alert('Błąd: Użytkownik nie posiada już danych praw/Nie udało się odebrać praw' ');</script>";
+                    }
                 }
             }
             if(form["id"] == "3")
@@ -61,7 +77,7 @@ namespace Urlopy.Controllers
             var temp2 = db.Roles.ToList<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>();
             ViewBag.UsersList = temp;
             ViewBag.RolesList = temp2;
-
+            
             return View();
         }
 	}
