@@ -46,18 +46,39 @@ namespace Urlopy.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Status")] Holiday holiday)
+        public ActionResult Create(List<HolidayRangeViewModel> holidayList)
         {
-            if (ModelState.IsValid)
+            var isValid = true;
+
+            foreach (var item in holidayList) {
+                if (item.EndDate == DateTime.MinValue || item.StartDate == DateTime.MinValue)
+                {
+                    isValid = false;
+                }
+            }
+
+            if (isValid)
             {
-                holiday.User = User.Identity.GetUserId();
+                var provider = new UserProvider();
+                ApplicationUser user = provider.UserManager.FindById(User.Identity.GetUserId());
+                Holiday holiday = new Holiday();
+
+                var ranges = new List<HolidayRange>();
+                foreach (var item in holidayList)
+                {
+                    ranges.Add(new HolidayRange(item));
+                }
+
+                holiday.HolidayRanges = ranges;
+
                 db.Holidays.Add(holiday);
+                user.Holidays.Add(holiday);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
-            return View(holiday);
+            return View("Invalid Data");
         }
 
         // GET: /Vacation/Edit/5

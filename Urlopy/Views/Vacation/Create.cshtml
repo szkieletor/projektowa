@@ -1,12 +1,13 @@
-﻿@model Urlopy.Models.Holiday
+﻿@model string
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/bundles/knockoutjs")
 
-@{
+@*@{*@
     ViewBag.Title = "Create";
-}
-
 <h2>Create</h2>
 
-@using (Html.BeginForm())
+@*@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -28,8 +29,59 @@
             </div>
         </div>
     </div>
-}
+    
+    
+    
+}*@
+
+
+
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+   @* @Html.ActionLink("Back to List", "Index")*@
+    @*@Html.LabelFor(Model);*@
+        <input type="button" data-bind="click: addItem" value="Add" />
+        <ul data-bind="foreach: dateList">
+            <li>
+                <input name="dateSelect" type="text" data-bind="value: StartDate" />
+                <input name="dateSelect" type="text" data-bind="value: EndDate" />
+                <input type="button" data-bind="click: removeItem" value="Remove" />
+            </li>
+        </ul>
+    <input type="button" data-bind="click: postData" value="Submit" />
 </div>
+
+<script>
+
+    var viewModel = function () {
+
+        self.dateList = ko.observableArray();
+        //self.itemCounter = ko.observable(1);
+
+        self.addItem = function () {
+            self.dateList.push({ StartDate: '', EndDate: '' });
+        };
+
+        self.removeItem = function (listItem) {
+            self.dateList.remove(listItem);
+        };
+        
+        self.postData = function () {
+            //var model = self.dateList();
+            var model = {
+                holidayList: self.dateList()
+            };
+            $.ajax({
+                type: 'POST',
+                url: "@Url.Action("Create")",
+                contentType: 'application/json; charset=utf-8',
+                data: ko.toJSON(self.dateList),
+                success: function (result) {
+
+                }
+            });
+        }
+    }
+
+    ko.applyBindings(new viewModel());
+</script>

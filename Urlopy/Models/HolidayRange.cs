@@ -17,5 +17,11 @@ namespace Urlopy.Models
         public virtual ICollection<HolidayRangeHistory> HolidayRangeHistories { get; set; }
 
         public virtual Holiday Holiday { get; set; }
+
+        public HolidayRange(HolidayRangeViewModel vm)
+        {
+            DateFrom = vm.StartDate;
+            DateTo = vm.EndDate;
+        }
     }
 }
