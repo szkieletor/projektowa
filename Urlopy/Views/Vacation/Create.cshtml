@@ -1,87 +1,50 @@
-﻿@model string
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryui")
-@Scripts.Render("~/bundles/knockoutjs")
+﻿@model Urlopy.Models.Holiday
 
-@*@{*@
+@{
     ViewBag.Title = "Create";
-<h2>Create</h2>
+}
 
-@*@using (Html.BeginForm())
+<h2>Tworzenie urlopu</h2>
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Holiday</h4>
+        <h4>Urlop</h4>
         <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DateFrom, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Status)
-                @Html.ValidationMessageFor(model => model.Status)
+                @Html.TextBoxFor(model => model.DateFrom, new { @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.DateFrom)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateTo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DateTo, new { @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.DateTo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Comment, 3, 55, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Comment)
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-    
-    
-    
-}*@
-
-
-
-
+}
 <div>
-   @* @Html.ActionLink("Back to List", "Index")*@
-    @*@Html.LabelFor(Model);*@
-        <input type="button" data-bind="click: addItem" value="Add" />
-        <ul data-bind="foreach: dateList">
-            <li>
-                <input name="dateSelect" type="text" data-bind="value: StartDate" />
-                <input name="dateSelect" type="text" data-bind="value: EndDate" />
-                <input type="button" data-bind="click: removeItem" value="Remove" />
-            </li>
-        </ul>
-    <input type="button" data-bind="click: postData" value="Submit" />
+    @Html.ActionLink("Powrót do listy", "Index")
 </div>
-
-<script>
-
-    var viewModel = function () {
-
-        self.dateList = ko.observableArray();
-        //self.itemCounter = ko.observable(1);
-
-        self.addItem = function () {
-            self.dateList.push({ StartDate: '', EndDate: '' });
-        };
-
-        self.removeItem = function (listItem) {
-            self.dateList.remove(listItem);
-        };
-        
-        self.postData = function () {
-            //var model = self.dateList();
-            var model = {
-                holidayList: self.dateList()
-            };
-            $.ajax({
-                type: 'POST',
-                url: "@Url.Action("Create")",
-                contentType: 'application/json; charset=utf-8',
-                data: ko.toJSON(self.dateList),
-                success: function (result) {
-
-                }
-            });
-        }
-    }
-
-    ko.applyBindings(new viewModel());
-</script>

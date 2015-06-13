@@ -6,11 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Urlopy.Models;
 using Microsoft.AspNet.Identity;
+using Urlopy.Models;
 
 namespace Urlopy.Controllers
 {
+    [Authorize]
     public class VacationController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,7 +19,8 @@ namespace Urlopy.Controllers
         // GET: /Vacation/
         public ActionResult Index()
         {
-            return View(db.Holidays.ToList());
+            var holidays = db.Holidays.Include(h => h.ApplicationUser);
+            return View(holidays.ToList());
         }
 
         // GET: /Vacation/Details/5
@@ -46,39 +48,21 @@ namespace Urlopy.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(List<HolidayRangeViewModel> holidayList)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include="ID,ApplicationUserId,Status,DateFrom,DateTo")] Holiday holiday)
         {
-            var isValid = true;
-
-            foreach (var item in holidayList) {
-                if (item.EndDate == DateTime.MinValue || item.StartDate == DateTime.MinValue)
-                {
-                    isValid = false;
-                }
-            }
-
-            if (isValid)
+            if (ModelState.IsValid)
             {
-                var provider = new UserProvider();
-                ApplicationUser user = provider.UserManager.FindById(User.Identity.GetUserId());
-                Holiday holiday = new Holiday();
-
-                var ranges = new List<HolidayRange>();
-                foreach (var item in holidayList)
-                {
-                    ranges.Add(new HolidayRange(item));
-                }
-
-                holiday.HolidayRanges = ranges;
-
+                UserProvider provider = new UserProvider();
+                var currentUser = provider.UserManager.FindById(User.Identity.GetUserId());
+                holiday.ApplicationUser = currentUser;
                 db.Holidays.Add(holiday);
-                user.Holidays.Add(holiday);
                 db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
 
-            return View("Invalid Data");
+            //ViewBag.ApplicationUserId = new SelectList(db.IdentityUsers, "Id", "UserName", holiday.ApplicationUserId);
+            return View(holiday);
         }
 
         // GET: /Vacation/Edit/5
@@ -93,6 +77,7 @@ namespace Urlopy.Controllers
             {
                 return HttpNotFound();
             }
+            //ViewBag.ApplicationUserId = new SelectList(db.IdentityUsers, "Id", "UserName", holiday.ApplicationUserId);
             return View(holiday);
         }
 
@@ -101,7 +86,7 @@ namespace Urlopy.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Status")] Holiday holiday)
+        public ActionResult Edit([Bind(Include="ID,ApplicationUserId,Status,DateFrom,DateTo")] Holiday holiday)
         {
             if (ModelState.IsValid)
             {
@@ -109,6 +94,7 @@ namespace Urlopy.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //ViewBag.ApplicationUserId = new SelectList(db.IdentityUsers, "Id", "UserName", holiday.ApplicationUserId);
             return View(holiday);
         }
 

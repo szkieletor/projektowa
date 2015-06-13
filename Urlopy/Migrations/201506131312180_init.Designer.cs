@@ -7,13 +7,13 @@ namespace Urlopy.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class ŁowiczApproves2 : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ŁowiczApproves2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505251830574_ŁowiczApproves2"; }
+            get { return "201506131312180_init"; }
         }
         
         string IMigrationMetadata.Source

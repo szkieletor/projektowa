@@ -168,38 +168,27 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
-    <Compile Include="Controllers\HolidayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VacationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505060810504_robaModele.cs" />
-    <Compile Include="Migrations\201505060810504_robaModele.Designer.cs">
-      <DependentUpon>201505060810504_robaModele.cs</DependentUpon>
+    <Compile Include="Migrations\201506131312180_init.cs" />
+    <Compile Include="Migrations\201506131312180_init.Designer.cs">
+      <DependentUpon>201506131312180_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505241755076_ŁowiczApproves.cs" />
-    <Compile Include="Migrations\201505241755076_ŁowiczApproves.Designer.cs">
-      <DependentUpon>201505241755076_ŁowiczApproves.cs</DependentUpon>
+    <Compile Include="Migrations\201506131402383_addCommentToHoliday.cs" />
+    <Compile Include="Migrations\201506131402383_addCommentToHoliday.Designer.cs">
+      <DependentUpon>201506131402383_addCommentToHoliday.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505251830574_ŁowiczApproves2.cs" />
-    <Compile Include="Migrations\201505251830574_ŁowiczApproves2.Designer.cs">
-      <DependentUpon>201505251830574_ŁowiczApproves2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505251851157_LowiczApproves3.cs" />
-    <Compile Include="Migrations\201505251851157_LowiczApproves3.Designer.cs">
-      <DependentUpon>201505251851157_LowiczApproves3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505252055165_LowiczApproves31.cs" />
-    <Compile Include="Migrations\201505252055165_LowiczApproves31.Designer.cs">
-      <DependentUpon>201505252055165_LowiczApproves31.cs</DependentUpon>
+    <Compile Include="Migrations\201506131405145_addDefaultStatus.cs" />
+    <Compile Include="Migrations\201506131405145_addDefaultStatus.Designer.cs">
+      <DependentUpon>201506131405145_addDefaultStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Holiday.cs" />
-    <Compile Include="Models\HolidayRange.cs" />
-    <Compile Include="Models\HolidayRangeHistory.cs" />
-    <Compile Include="Models\HolidayRangeViewModel.cs" />
+    <Compile Include="Models\HolidayStatus.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\UserProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -251,6 +240,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\DatePickerReady.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -262,6 +252,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\knockout.validation.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -293,19 +285,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Holiday\Create.cshtml" />
-    <Content Include="Views\Holiday\Delete.cshtml" />
-    <Content Include="Views\Holiday\Details.cshtml" />
-    <Content Include="Views\Holiday\Edit.cshtml" />
-    <Content Include="Views\Holiday\Index.cshtml" />
-    <Content Include="Views\Holiday\Pdf.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Administration\ManageUserRoles.cshtml" />
+    <Content Include="Scripts\knockout.validation.min.js.map" />
     <Content Include="Views\Vacation\Create.cshtml" />
     <Content Include="Views\Vacation\Delete.cshtml" />
     <Content Include="Views\Vacation\Details.cshtml" />
     <Content Include="Views\Vacation\Edit.cshtml" />
     <Content Include="Views\Vacation\Index.cshtml" />
-    <Content Include="Views\Administration\Index.cshtml" />
-    <Content Include="Views\Administration\ManageUserRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,20 +306,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505060810504_robaModele.resx">
-      <DependentUpon>201505060810504_robaModele.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506131312180_init.resx">
+      <DependentUpon>201506131312180_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505241755076_ŁowiczApproves.resx">
-      <DependentUpon>201505241755076_ŁowiczApproves.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506131402383_addCommentToHoliday.resx">
+      <DependentUpon>201506131402383_addCommentToHoliday.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505251830574_ŁowiczApproves2.resx">
-      <DependentUpon>201505251830574_ŁowiczApproves2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505251851157_LowiczApproves3.resx">
-      <DependentUpon>201505251851157_LowiczApproves3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505252055165_LowiczApproves31.resx">
-      <DependentUpon>201505252055165_LowiczApproves31.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506131405145_addDefaultStatus.resx">
+      <DependentUpon>201506131405145_addDefaultStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

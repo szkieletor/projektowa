@@ -3,51 +3,23 @@ namespace Urlopy.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class robaModele : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.HolidayRangeHistories",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        HolidayRangeID = c.Int(nullable: false),
-                        OperationType = c.String(),
-                        DateFrom = c.DateTime(nullable: false),
-                        DateTo = c.DateTime(nullable: false),
-                        Kind = c.String(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.HolidayRanges", t => t.HolidayRangeID, cascadeDelete: true)
-                .Index(t => t.HolidayRangeID);
-            
-            CreateTable(
-                "dbo.HolidayRanges",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        HolidayID = c.Int(nullable: false),
-                        DateFrom = c.DateTime(nullable: false),
-                        DateTo = c.DateTime(nullable: false),
-                        Kind = c.String(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Holidays", t => t.HolidayID, cascadeDelete: true)
-                .Index(t => t.HolidayID);
-            
             CreateTable(
                 "dbo.Holidays",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        UserID = c.Int(nullable: false),
-                        Status = c.String(),
-                        User_Id = c.String(maxLength: 128),
+                        ApplicationUserId = c.String(maxLength: 128),
+                        Status = c.Int(nullable: false),
+                        DateFrom = c.DateTime(nullable: false),
+                        DateTo = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
-                .Index(t => t.User_Id);
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
+                .Index(t => t.ApplicationUserId);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -121,30 +93,24 @@ namespace Urlopy.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.HolidayRangeHistories", "HolidayRangeID", "dbo.HolidayRanges");
             DropForeignKey("dbo.AspNetUsers", "Supervisor_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Holidays", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Holidays", "ApplicationUserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.HolidayRanges", "HolidayID", "dbo.Holidays");
-            DropIndex("dbo.HolidayRangeHistories", new[] { "HolidayRangeID" });
             DropIndex("dbo.AspNetUsers", new[] { "Supervisor_Id" });
-            DropIndex("dbo.Holidays", new[] { "User_Id" });
+            DropIndex("dbo.Holidays", new[] { "ApplicationUserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("dbo.HolidayRanges", new[] { "HolidayID" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Holidays");
-            DropTable("dbo.HolidayRanges");
-            DropTable("dbo.HolidayRangeHistories");
         }
     }
 }

@@ -15,7 +15,8 @@ namespace Urlopy
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockoutjs").Include(
-            "~/Scripts/knockout-{version}.js"));
+            "~/Scripts/knockout-{version}.js",
+            "~/Scripts/knockout.validation.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
 "~/Scripts/jquery-ui-{version}.js"));
@@ -28,6 +29,9 @@ namespace Urlopy
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
+          "~/Scripts/DatePickerReady.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

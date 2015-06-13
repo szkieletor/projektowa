@@ -20,8 +20,6 @@ namespace Urlopy.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Holiday> Holidays { get; set; }
-        public DbSet<HolidayRange> HolidayRanges { get; set; }
-        public DbSet<HolidayRangeHistory> HolidayRangeHistories { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection")
         { }
