@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201506131405145_addDefaultStatus.Designer.cs">
       <DependentUpon>201506131405145_addDefaultStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506122009287_pageStyle.cs" />
+    <Compile Include="Migrations\201506122009287_pageStyle.Designer.cs">
+      <DependentUpon>201506122009287_pageStyle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Holiday.cs" />
@@ -196,7 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.red.css" />
+    <Content Include="Content\bootstrap.min.green.css" />
+    <Content Include="Content\bootstrap.min.blue.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -239,6 +245,8 @@
     <Content Include="img\logowi.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="pdf\Uchwała_Senatu_PB.pdf" />
+    <Content Include="pdf\Zarządzenie_19_2009.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DatePickerReady.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -314,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506131405145_addDefaultStatus.resx">
       <DependentUpon>201506131405145_addDefaultStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506122009287_pageStyle.resx">
+      <DependentUpon>201506122009287_pageStyle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
