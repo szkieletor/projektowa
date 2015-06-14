@@ -17,9 +17,13 @@ namespace Urlopy.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: /Vacation/
-        public ActionResult Index()
+        public ActionResult Index(string id) // To mogloby obslugiwac przegladanie urlopow danego uzytkownika, robo zaimplementuj to do konca czy cos
         {
             var holidays = db.Holidays.Include(h => h.ApplicationUser);
+            if (!string.IsNullOrEmpty(id))
+            {
+                holidays = holidays.Where(u => u.ApplicationUser.Id == id);
+            }
             return View(holidays.ToList());
         }
 
