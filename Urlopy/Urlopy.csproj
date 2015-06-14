@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201506122009287_pageStyle.Designer.cs">
       <DependentUpon>201506122009287_pageStyle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506141015436_costam.cs" />
+    <Compile Include="Migrations\201506141015436_costam.Designer.cs">
+      <DependentUpon>201506141015436_costam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Holiday.cs" />
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506122009287_pageStyle.resx">
       <DependentUpon>201506122009287_pageStyle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506141015436_costam.resx">
+      <DependentUpon>201506141015436_costam.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

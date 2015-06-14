@@ -53,7 +53,7 @@ namespace Urlopy.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserProvider provider = new UserProvider();
+                UserProvider provider = new UserProvider(db);
                 var currentUser = provider.UserManager.FindById(User.Identity.GetUserId());
                 holiday.ApplicationUser = currentUser;
                 db.Holidays.Add(holiday);

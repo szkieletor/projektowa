@@ -11,8 +11,13 @@ namespace Urlopy.Models
     public class UserProvider
     {
         public UserManager<ApplicationUser> UserManager { get; set; }
-        public UserProvider()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+        private UserProvider()
+        {
+
+        }
+
+        public UserProvider(ApplicationDbContext context) :
+            this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context)))
         {
 
         }
