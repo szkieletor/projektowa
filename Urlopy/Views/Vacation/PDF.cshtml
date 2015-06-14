@@ -1,0 +1,49 @@
+﻿@model Urlopy.Models.Holiday
+@using Urlopy.Models
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <br />
+
+    <h1>W N I O S E K U R L O P O W Y </h1>@*<img src="../img/logo.jpg" class="img-responsive" width="200" height="100" hspace="20">*@
+    <br />
+    <p>Nazwisko i imie: @Session["UserName"]</p>
+    <p>Stanowisko:</p>
+    <br />
+    <p>Jednostka organizacyjna:</p>
+    <br />
+    <br />
+    <table border="1" cellpadding="5">
+        <tr>
+            <td>Rodzaj urlopu:</td>
+            <td>Liczba dni:</td>
+            <td>Termin/y urlopu:</td>
+        </tr>
+        <tr>
+            <td>URLOP WYPOCZYNKOWY podstawa prawna art. 152-173 KP lub Art.133 ustawy prawo o szkolnictwie wyższym</td>
+
+            @{
+                var dayCount = 0;
+
+                for (var currentDate = Model.DateFrom.Date; currentDate.Date <= Model.DateTo.Date; currentDate = currentDate.AddDays(1))
+                {
+                    if (currentDate.DayOfWeek != DayOfWeek.Sunday && currentDate.DayOfWeek != DayOfWeek.Saturday)
+                    {
+                        dayCount++;
+                    }
+                }
+            }
+            <td>@dayCount</td>
+            <td>@Model.DateFrom.Date.ToShortDateString() - @Model.DateTo.Date.ToShortDateString()</td>
+        </tr>
+    </table>
+</body>
+</html>

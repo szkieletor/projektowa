@@ -128,6 +128,23 @@ namespace Urlopy.Controllers
             return RedirectToAction("Index");
         }
 
+       public ActionResult ToPDF(int? id)
+       {
+           if (id == null)
+           {
+               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+           }
+           Holiday holiday = db.Holidays.Find(id);
+           if (holiday == null)
+           {
+               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+           }
+           UserProvider provider = new UserProvider(db);
+           ApplicationUser user = provider.UserManager.FindById(User.Identity.GetUserId());
+           Session["UserName"] = user.Name + " " + user.Surname;
+           return new RazorPDF.PdfResult(holiday, "Pdf");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

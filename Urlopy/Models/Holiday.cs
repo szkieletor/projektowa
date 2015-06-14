@@ -27,5 +27,19 @@ namespace Urlopy.Models
         [DisplayName("Komentarz")]
         public string Comment { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public int GetTotalBusinessDays()
+        {
+            var dayCount = 0;
+
+            for (var currentDate = DateFrom; currentDate.Date <= DateTo;currentDate = currentDate.AddDays(1))
+            {
+                if (currentDate.DayOfWeek != DayOfWeek.Sunday && currentDate.DayOfWeek != DayOfWeek.Saturday)
+                {
+                    dayCount++;
+                }
+            }
+            return dayCount;
+        }
     }
 }
